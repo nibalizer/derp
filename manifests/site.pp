@@ -628,6 +628,16 @@ node 'pypi.slave.openstack.org' {
   }
 }
 
+# Node-OS: trusty
+node 'livegrep.openstack.org' {
+  include openstack_project
+  class { 'openstack_project::server':
+    iptables_public_tcp_ports => [80],
+  }
+  class { 'openstack_project::livegrep': }
+
+}
+
 # Node-OS: precise
 node 'openstackid.org' {
   class { 'openstack_project::openstackid_prod':
